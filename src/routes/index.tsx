@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
+import { getGithubData } from "@/lib/github.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
