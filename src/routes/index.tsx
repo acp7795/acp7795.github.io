@@ -150,6 +150,115 @@ const TRACK_RECORD = [
   { label: "eng velocity gain", value: "30%", width: "30%" },
 ];
 
+function GithubLive() {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["github", "acphotinakis"],
+    queryFn: () => getGithubData(),
+    staleTime: 5 * 60 * 1000,
+  });
+
+  return (
+    <section id="github" className="py-14">
+      <div className="mb-8 flex items-baseline justify-between border-b border-border pb-3">
+        <h2 className="text-2xl font-bold tracking-tight">GitHub — live</h2>
+        <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+          api.github.com
+        </span>
+      </div>
+
+      {isLoading && (
+        <div className="rounded-xl border border-border bg-card/40 p-6 font-mono text-[11px] text-muted-foreground ring-1 ring-black/5 backdrop-blur-xl">
+          $ fetching github.com/acphotinakis …
+        </div>
+      )}
+
+      {isError && (
+        <div className="rounded-xl border border-border bg-card/40 p-6 font-mono text-[11px] text-muted-foreground ring-1 ring-black/5 backdrop-blur-xl">
+          Live data unavailable right now — visit{" "}
+          <a
+            href="https://github.com/acphotinakis"
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue hover:underline"
+          >
+            github.com/acphotinakis
+          </a>
+          .
+        </div>
+      )}
+
+      {data && (
+        <div className="space-y-4">
+          <div className="flex flex-col gap-5 rounded-xl border border-border bg-card/55 p-5 ring-1 ring-black/5 backdrop-blur-xl sm:flex-row sm:items-center sm:p-6">
+            <img
+              src={data.profile.avatarUrl}
+              alt={`${data.profile.name} on GitHub`}
+              className="size-16 rounded-full border border-border"
+            />
+            <div className="flex-1">
+              <h3 className="text-base font-semibold">
+                {data.profile.name}{" "}
+                <span className="font-mono text-[11px] font-normal text-muted-foreground">
+                  @{data.profile.login}
+                </span>
+              </h3>
+              {data.profile.bio && (
+                <p className="mt-1 max-w-[60ch] text-sm text-muted-foreground text-pretty">
+                  {data.profile.bio}
+                </p>
+              )}
+            </div>
+            <div className="flex gap-4 font-mono text-[11px] text-muted-foreground sm:flex-col sm:gap-1.5 sm:text-right">
+              <span>
+                <span className="text-foreground">{data.profile.publicRepos}</span> repos
+              </span>
+              <span>
+                <span className="text-foreground">{data.totalStars}</span> ★ stars
+              </span>
+              <span>
+                <span className="text-foreground">{data.profile.followers}</span> followers
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {data.topRepos.map((r) => (
+              <a
+                key={r.name}
+                href={r.htmlUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex flex-col rounded-xl border border-border bg-card/55 p-5 ring-1 ring-black/5 backdrop-blur-xl transition-colors hover:border-blue/40"
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <h4 className="text-sm font-semibold transition-colors group-hover:text-blue">
+                    {r.name}
+                  </h4>
+                  <span className="font-mono text-[11px] text-muted-foreground">
+                    ★ {r.stars} · ⑂ {r.forks}
+                  </span>
+                </div>
+                <p className="mt-1.5 flex-1 text-sm text-muted-foreground text-pretty">
+                  {r.description ?? "No description."}
+                </p>
+                <div className="mt-4 flex items-center justify-between font-mono text-[11px] text-muted-foreground">
+                  <span>{r.language ?? "—"}</span>
+                  <span>updated {new Date(r.updatedAt).toLocaleDateString("en-US", { month: "short", year: "numeric" })}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <p className="font-mono text-[11px] text-muted-foreground/80">
+            live from the GitHub API · fetched{" "}
+            {new Date(data.fetchedAt).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
+          </p>
+        </div>
+      )}
+    </section>
+  );
+}
+
 function Portfolio() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
