@@ -461,6 +461,8 @@ function Portfolio() {
           </div>
         </section>
 
+        <GithubLive />
+
         {/* Skills */}
         <section id="skills" className="py-14">
           <div className="mb-8 flex items-baseline justify-between border-b border-border pb-3">
