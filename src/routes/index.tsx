@@ -131,15 +131,18 @@ const SKILLS = [
   },
   {
     category: "Frameworks",
-    items: "Spring Boot · .NET Core · React · Angular · Next.js · Node.js · FastAPI · Flask · TailwindCSS",
+    items:
+      "Spring Boot · .NET Core · React · Angular · Next.js · Node.js · FastAPI · Flask · TailwindCSS",
   },
   {
     category: "Cloud & Data",
-    items: "Azure Functions · Azure Data Factory · Google Cloud Platform · PostgreSQL · MongoDB · BigQuery · DynamoDB · MySQL",
+    items:
+      "Azure Functions · Azure Data Factory · Google Cloud Platform · PostgreSQL · MongoDB · BigQuery · DynamoDB · MySQL",
   },
   {
     category: "AI / ML",
-    items: "Model Context Protocol · Agentic AI Workflows · Vertex AI · TensorFlow · PyTorch · Scikit-learn · Keras",
+    items:
+      "Model Context Protocol · Agentic AI Workflows · Vertex AI · TensorFlow · PyTorch · Scikit-learn · Keras",
   },
 ];
 
@@ -243,7 +246,13 @@ function GithubLive() {
                 </p>
                 <div className="mt-4 flex items-center justify-between font-mono text-[11px] text-muted-foreground">
                   <span>{r.language ?? "—"}</span>
-                  <span>updated {new Date(r.updatedAt).toLocaleDateString("en-US", { month: "short", year: "numeric" })}</span>
+                  <span>
+                    updated{" "}
+                    {new Date(r.updatedAt).toLocaleDateString("en-US", {
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </span>
                 </div>
               </a>
             ))}
@@ -251,7 +260,10 @@ function GithubLive() {
 
           <p className="font-mono text-[11px] text-muted-foreground/80">
             live from the GitHub API · fetched{" "}
-            {new Date(data.fetchedAt).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
+            {new Date(data.fetchedAt).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
           </p>
         </div>
       )}
@@ -316,15 +328,15 @@ function Portfolio() {
               className="rise mt-5 max-w-[36ch] text-lg text-muted-foreground text-pretty"
               style={{ animationDelay: "160ms" }}
             >
-              I build scalable backend systems and distributed infrastructure — cloud
-              orchestration, high-performance computing, and AI-powered pipelines.
+              I build scalable backend systems and distributed infrastructure — cloud orchestration,
+              high-performance computing, and AI-powered pipelines.
             </p>
             <div
               className="rise mt-4 font-mono text-xs text-muted-foreground"
               style={{ animationDelay: "220ms" }}
             >
-              <span className="text-blue">$</span> <span className="text-foreground">whoami</span>{" "}
-              — backend &amp; distributed systems engineer
+              <span className="text-blue">$</span> <span className="text-foreground">whoami</span> —
+              backend &amp; distributed systems engineer
               <span className="caret text-blue">▍</span>
             </div>
             <div
@@ -408,7 +420,9 @@ function Portfolio() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-3 font-mono text-[11px] text-muted-foreground/80">{job.techNote}</p>
+                <p className="mt-3 font-mono text-[11px] text-muted-foreground/80">
+                  {job.techNote}
+                </p>
               </div>
             ))}
           </div>
@@ -538,7 +552,12 @@ function Portfolio() {
             <span>© 2026 Andrew Photinakis — Washington, D.C.</span>
             <span className="text-muted-foreground">
               acphotinakis.github.io ·{" "}
-              <a href={LINKS.site} target="_blank" rel="noreferrer" className="text-blue hover:underline">
+              <a
+                href={LINKS.site}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue hover:underline"
+              >
                 site
               </a>{" "}
               · <span className="text-blue">ok</span>
