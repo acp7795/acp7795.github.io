@@ -2,7 +2,7 @@
 
 A personal portfolio and software engineering showcase built with **React 19**, **TypeScript**, **Tailwind CSS v4**, and **TanStack Start**. Designed for high performance, type safety, and automated deployment as a static site on **GitHub Pages**.
 
-**Live Site**: [https://acp7795.github.io/](https://acp7795.github.io/)  
+**Live Site**: [https://acp7795.github.io/](https://acp7795.github.io/)
 
 ---
 
